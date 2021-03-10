@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Windows;
+using Microsoft.Office.Interop.Excel;
 
 
 namespace laba4
@@ -10,7 +11,7 @@ namespace laba4
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : System.Windows.Window
     {
         ApplicationContext db;
         public MainWindow()
@@ -98,5 +99,54 @@ namespace laba4
             db.Debts.Remove(debt);
             db.SaveChanges();
         }
+
+
+        private void ExportToExcel(object sender, RoutedEventArgs e)
+        {
+            var excelApp = new Microsoft.Office.Interop.Excel.Application();
+            excelApp.Visible = false;
+            excelApp.Workbooks.Add();
+            _Worksheet workSheet = (Worksheet)excelApp.ActiveSheet;
+
+            workSheet.Cells[1, "A"] = "Номер договора";
+            workSheet.Cells[1, "B"] = "Имя";
+            workSheet.Cells[1, "C"] = "Адрес проживания";
+            workSheet.Cells[1, "D"] = "Номер телефона";
+            workSheet.Cells[1, "E"] = "Дата взятия кредита";
+            workSheet.Cells[1, "F"] = "Начальная сумма кредита";
+            workSheet.Cells[1, "G"] = "Долг";
+            workSheet.Cells[1, "H"] = "Название банка";
+
+            var row = 2;
+            foreach (var debt in db.Debts.Local.ToBindingList())
+            {
+                workSheet.Cells[row, "A"] = debt.Id;
+                workSheet.Cells[row, "B"] = debt.Name;
+                workSheet.Cells[row, "C"] = debt.Addres;
+                workSheet.Cells[row, "D"] = debt.Phone;
+                workSheet.Cells[row, "E"] = debt.DateDebt;
+                workSheet.Cells[row, "F"] = debt.InitialDebt;
+                workSheet.Cells[row, "G"] = debt.CurrentDebt;
+                workSheet.Cells[row, "H"] = debt.Bank;
+                row++;
+            }
+
+            for (int i = 1; i < 8; i++)
+            {
+                workSheet.Columns[i].AutoFit();
+            }
+            excelApp.Visible = true;
+        }
+
+        private void Exit(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Application.Current.Shutdown();
+        }
+
+        private void ShowHelp(object sender, RoutedEventArgs e)
+        {
+
+        }
+
     }
 }
