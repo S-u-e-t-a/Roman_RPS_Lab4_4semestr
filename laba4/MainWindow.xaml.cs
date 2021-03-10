@@ -145,7 +145,9 @@ namespace laba4
 
         private void ShowHelp(object sender, RoutedEventArgs e)
         {
-
+            HelpForm help  = new HelpForm();
+            help.Owner = this;
+            help.ShowDialog();
         }
 
     }

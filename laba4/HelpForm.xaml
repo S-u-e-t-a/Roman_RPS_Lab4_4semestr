@@ -1,0 +1,17 @@
+﻿<Window x:Class="laba4.HelpForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:laba4"
+        mc:Ignorable="d"
+        Title="Справка" Height="170" Width="500" ResizeMode="NoResize">
+    <Grid>
+        <TextBlock  TextWrapping="Wrap">
+            *Данная программа использует технологию WPF и реализует возможность работы со списком должников. <LineBreak/>
+            *Программа может добавлять, изменять и удалять сущности из базы данных.<LineBreak/>
+            *Данные сохраняются между запусками программы.<LineBreak/>
+            *Предусмотрена возможность экспорта сущностей в Excel таблицу.
+        </TextBlock>
+    </Grid>
+</Window>
