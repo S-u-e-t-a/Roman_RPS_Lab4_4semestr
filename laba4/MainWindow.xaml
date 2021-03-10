@@ -14,7 +14,7 @@
         </Grid.RowDefinitions>
         <ListBox x:Name="debtsList" ItemsSource="{Binding}">
             <ListBox.ItemTemplate>
-                <DataTemplate Template="">
+                <DataTemplate>
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition/>
