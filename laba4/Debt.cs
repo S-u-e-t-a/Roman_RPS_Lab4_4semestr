@@ -86,7 +86,24 @@ namespace laba4
             }
         }
 
-
+        public bool ChekValues()
+        {
+            if (name != null & addres != null & dateDebt != null & bank != null & phone != null)
+            {
+                if (initialDebt > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
 
 
 

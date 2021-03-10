@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Windows;
 
 
@@ -27,8 +28,16 @@ namespace laba4
             if (debtWindow.ShowDialog() == true)
             {
                 Debt debt = debtWindow.Debt;
-                db.Debts.Add(debt);
-                db.SaveChanges();
+                if (debt.ChekValues())
+                {
+                    db.Debts.Add(debt);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    MessageBox.Show("Данные введены некорректно, операция не выполнена.", "Ошибка!",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
         // редактирование
@@ -65,8 +74,17 @@ namespace laba4
                     debt.InitialDebt = debtWindow.Debt.InitialDebt;
                     debt.CurrentDebt = debtWindow.Debt.CurrentDebt;
                     debt.Bank = debtWindow.Debt.Bank;
-                    db.Entry(debt).State = EntityState.Modified;
-                    db.SaveChanges();
+                    
+                    if (debt.ChekValues())
+                    {
+                        db.Entry(debt).State = EntityState.Modified;
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Данные введены некорректно, операция не выполнена.", "Ошибка!",
+                            MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                 }
             }
         }
