@@ -3,14 +3,17 @@ using System.Runtime.CompilerServices;
 
 namespace laba4
 {
+    /// <summary>
+    /// Класс описывающий должника
+    /// </summary>
     public class Debt : INotifyPropertyChanged
     {
-        private decimal initialDebt;
-        private decimal currentDebt;
-        private string name;
         private string addres;
-        private string dateDebt;
         private string bank;
+        private decimal currentDebt;
+        private string dateDebt;
+        private decimal initialDebt;
+        private string name;
         private string phone;
 
 
@@ -18,97 +21,94 @@ namespace laba4
 
         public decimal InitialDebt
         {
-            get { return initialDebt; }
+            get => initialDebt;
             set
             {
                 initialDebt = value;
-                OnPropertyChanged("InitialDebt");
+                OnPropertyChanged();
             }
         }
 
         public decimal CurrentDebt
         {
-            get { return currentDebt; }
+            get => currentDebt;
             set
             {
                 currentDebt = value;
-                OnPropertyChanged("CurrentDebt");
+                OnPropertyChanged();
             }
         }
 
         public string Name
         {
-            get { return name; }
+            get => name;
             set
             {
                 name = value;
-                OnPropertyChanged("Name");
+                OnPropertyChanged();
             }
         }
 
         public string Addres
         {
-            get { return addres; }
+            get => addres;
             set
             {
                 addres = value;
-                OnPropertyChanged("Addres");
+                OnPropertyChanged();
             }
         }
 
         public string DateDebt
         {
-            get { return dateDebt; }
+            get => dateDebt;
             set
             {
                 dateDebt = value;
-                OnPropertyChanged("DateDebt");
+                OnPropertyChanged();
             }
         }
 
         public string Bank
         {
-            get { return bank; }
+            get => bank;
             set
             {
                 bank = value;
-                OnPropertyChanged("Bank");
+                OnPropertyChanged();
             }
         }
 
         public string Phone
         {
-            get { return phone; }
+            get => phone;
             set
             {
                 phone = value;
-                OnPropertyChanged("Phone");
+                OnPropertyChanged();
             }
         }
-
-        public bool ChekValues()
-        {
-            if (name != null & addres != null & dateDebt != null & bank != null & phone != null)
-            {
-                if (initialDebt > 0)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            else
-            {
-                return false;
-            }
-        }
-
 
 
         public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName]string prop = "")
+
+        /// <summary>
+        /// Проверка корректности данных
+        /// </summary>
+        /// <returns>Результат проверки</returns>
+        public bool ChekValues()
+        {
+            if ((name != null) & (addres != null) & (dateDebt != null) & (bank != null) & (phone != null))
+            {
+                if (initialDebt > 0)
+                    return true;
+                return false;
+            }
+
+            return false;
+        }
+
+        public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));

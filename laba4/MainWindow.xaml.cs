@@ -1,34 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
+﻿using System.Data.Entity;
 using System.Windows;
 using Microsoft.Office.Interop.Excel;
-
+using Application = Microsoft.Office.Interop.Excel.Application;
+using Window = System.Windows.Window;
 
 namespace laba4
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    ///     Логика взаимодействия для MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : System.Windows.Window
+    public partial class MainWindow : Window
     {
-        ApplicationContext db;
+        private readonly ApplicationContext db;
+
         public MainWindow()
         {
             InitializeComponent();
 
             db = new ApplicationContext();
             db.Debts.Load();
-            this.DataContext = db.Debts.Local.ToBindingList();
+            DataContext = db.Debts.Local.ToBindingList();
         }
-        // добавление
+
+        /// <summary>
+        /// Добавление сущности
+        /// </summary>
         private void Add_Click(object sender, RoutedEventArgs e)
         {
-            DebtWindow debtWindow = new DebtWindow(new Debt());
+            var debtWindow = new DebtWindow(new Debt());
             if (debtWindow.ShowDialog() == true)
             {
-                Debt debt = debtWindow.Debt;
+                var debt = debtWindow.Debt;
                 if (debt.ChekValues())
                 {
                     db.Debts.Add(debt);
@@ -41,15 +43,18 @@ namespace laba4
                 }
             }
         }
-        // редактирование
+
+        /// <summary>
+        /// Редактирование сущности
+        /// </summary>
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
             // если ни одного объекта не выделено, выходим
             if (debtsList.SelectedItem == null) return;
             // получаем выделенный объект
-            Debt debt = debtsList.SelectedItem as Debt;
+            var debt = debtsList.SelectedItem as Debt;
 
-            DebtWindow debtWindow = new DebtWindow(new Debt
+            var debtWindow = new DebtWindow(new Debt
             {
                 Id = debt.Id,
                 Name = debt.Name,
@@ -58,8 +63,7 @@ namespace laba4
                 DateDebt = debt.DateDebt,
                 InitialDebt = debt.InitialDebt,
                 CurrentDebt = debt.CurrentDebt,
-                Bank = debt.Bank,
-
+                Bank = debt.Bank
             });
 
             if (debtWindow.ShowDialog() == true)
@@ -75,7 +79,7 @@ namespace laba4
                     debt.InitialDebt = debtWindow.Debt.InitialDebt;
                     debt.CurrentDebt = debtWindow.Debt.CurrentDebt;
                     debt.Bank = debtWindow.Debt.Bank;
-                    
+
                     if (debt.ChekValues())
                     {
                         db.Entry(debt).State = EntityState.Modified;
@@ -89,24 +93,29 @@ namespace laba4
                 }
             }
         }
-        // удаление
+
+        /// <summary>
+        /// Удаление сущности
+        /// </summary>
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
             // если ни одного объекта не выделено, выходим
             if (debtsList.SelectedItem == null) return;
             // получаем выделенный объект
-            Debt debt = debtsList.SelectedItem as Debt;
+            var debt = debtsList.SelectedItem as Debt;
             db.Debts.Remove(debt);
             db.SaveChanges();
         }
 
-
+        /// <summary>
+        /// Экспортирование данных в таблицу Excel
+        /// </summary>
         private void ExportToExcel(object sender, RoutedEventArgs e)
         {
-            var excelApp = new Microsoft.Office.Interop.Excel.Application();
+            var excelApp = new Application();
             excelApp.Visible = false;
             excelApp.Workbooks.Add();
-            _Worksheet workSheet = (Worksheet)excelApp.ActiveSheet;
+            _Worksheet workSheet = (Worksheet) excelApp.ActiveSheet;
 
             workSheet.Cells[1, "A"] = "Номер договора";
             workSheet.Cells[1, "B"] = "Имя";
@@ -131,24 +140,26 @@ namespace laba4
                 row++;
             }
 
-            for (int i = 1; i < 8; i++)
-            {
-                workSheet.Columns[i].AutoFit();
-            }
+            for (var i = 1; i < 8; i++) workSheet.Columns[i].AutoFit();
             excelApp.Visible = true;
         }
 
+        /// <summary>
+        /// Выход из программы
+        /// </summary>
         private void Exit(object sender, RoutedEventArgs e)
         {
             System.Windows.Application.Current.Shutdown();
         }
 
+        /// <summary>
+        /// Вызов окна с попомщью
+        /// </summary>
         private void ShowHelp(object sender, RoutedEventArgs e)
         {
-            HelpForm help  = new HelpForm();
+            var help = new HelpForm();
             help.Owner = this;
             help.ShowDialog();
         }
-
     }
 }
