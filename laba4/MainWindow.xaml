@@ -15,7 +15,6 @@
         </Grid.RowDefinitions>
         <Menu
             Grid.Row="0"
-            Height="25"
             VerticalAlignment="Top">
             <MenuItem Header="Файл">
                 <MenuItem Click="ExportToExcel" Header="Экспорт в Excel" />
