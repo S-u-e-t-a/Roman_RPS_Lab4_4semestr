@@ -23,10 +23,10 @@
             </MenuItem>
             <MenuItem Header="Справка" Click="ShowHelp" />
         </Menu>
-        <ListBox x:Name="debtsList" ItemsSource="{Binding}" Grid.Row="1">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Grid>
+        <ListBox x:Name="debtsList" ItemsSource="{Binding}" Grid.Row="1"  >
+            <ListBox.ItemTemplate >
+                <DataTemplate >
+                    <Grid >
                         <Grid.RowDefinitions>
                             <RowDefinition />
                             <RowDefinition />
@@ -61,6 +61,12 @@
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="BorderThickness" Value="1" />
+                    <Setter Property="BorderBrush" Value="DarkGray" />
+                </Style>
+            </ListBox.ItemContainerStyle>
         </ListBox>
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
             <Button Content="Добавить" Margin="10" Click="Add_Click" />
