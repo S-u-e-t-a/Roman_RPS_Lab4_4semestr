@@ -64,7 +64,8 @@
                 <Style TargetType="{x:Type TextBox}">
                     <Style.Triggers>
                         <Trigger Property="Validation.HasError" Value="True">
-                            <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}" />
+                            <Setter Property="ToolTip"
+                                    Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}" />
                         </Trigger>
                     </Style.Triggers>
                 </Style>
@@ -86,7 +87,8 @@
                 <Style TargetType="{x:Type TextBox}">
                     <Style.Triggers>
                         <Trigger Property="Validation.HasError" Value="True">
-                            <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}" />
+                            <Setter Property="ToolTip"
+                                    Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}" />
                         </Trigger>
                     </Style.Triggers>
                 </Style>
@@ -107,7 +109,8 @@
                 <Style TargetType="{x:Type TextBox}">
                     <Style.Triggers>
                         <Trigger Property="Validation.HasError" Value="True">
-                            <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}" />
+                            <Setter Property="ToolTip"
+                                    Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}" />
                         </Trigger>
                     </Style.Triggers>
                 </Style>
@@ -129,7 +132,8 @@
                 <Style TargetType="{x:Type TextBox}">
                     <Style.Triggers>
                         <Trigger Property="Validation.HasError" Value="True">
-                            <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}" />
+                            <Setter Property="ToolTip"
+                                    Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}" />
                         </Trigger>
                     </Style.Triggers>
                 </Style>
@@ -151,7 +155,8 @@
                 <Style TargetType="{x:Type TextBox}">
                     <Style.Triggers>
                         <Trigger Property="Validation.HasError" Value="True">
-                            <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}" />
+                            <Setter Property="ToolTip"
+                                    Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}" />
                         </Trigger>
                     </Style.Triggers>
                 </Style>
@@ -173,7 +178,8 @@
                 <Style TargetType="{x:Type TextBox}">
                     <Style.Triggers>
                         <Trigger Property="Validation.HasError" Value="True">
-                            <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}" />
+                            <Setter Property="ToolTip"
+                                    Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}" />
                         </Trigger>
                     </Style.Triggers>
                 </Style>
@@ -195,7 +201,8 @@
                 <Style TargetType="{x:Type TextBox}">
                     <Style.Triggers>
                         <Trigger Property="Validation.HasError" Value="True">
-                            <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}" />
+                            <Setter Property="ToolTip"
+                                    Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}" />
                         </Trigger>
                     </Style.Triggers>
                 </Style>

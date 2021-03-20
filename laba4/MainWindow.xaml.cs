@@ -23,7 +23,7 @@ namespace laba4
         }
 
         /// <summary>
-        /// Добавление сущности
+        ///     Добавление сущности
         /// </summary>
         private void Add_Click(object sender, RoutedEventArgs e)
         {
@@ -45,7 +45,7 @@ namespace laba4
         }
 
         /// <summary>
-        /// Редактирование сущности
+        ///     Редактирование сущности
         /// </summary>
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
@@ -95,20 +95,25 @@ namespace laba4
         }
 
         /// <summary>
-        /// Удаление сущности
+        ///     Удаление сущности
         /// </summary>
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
             // если ни одного объекта не выделено, выходим
             if (debtsList.SelectedItem == null) return;
             // получаем выделенный объект
-            var debt = debtsList.SelectedItem as Debt;
-            db.Debts.Remove(debt);
-            db.SaveChanges();
+            var result = MessageBox.Show("Вы действительно хотите удалить текущую запись?", "", MessageBoxButton.YesNo,
+                MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                var debt = debtsList.SelectedItem as Debt;
+                db.Debts.Remove(debt);
+                db.SaveChanges();
+            }
         }
 
         /// <summary>
-        /// Экспортирование данных в таблицу Excel
+        ///     Экспортирование данных в таблицу Excel
         /// </summary>
         private void ExportToExcel(object sender, RoutedEventArgs e)
         {
@@ -145,7 +150,7 @@ namespace laba4
         }
 
         /// <summary>
-        /// Выход из программы
+        ///     Выход из программы
         /// </summary>
         private void Exit(object sender, RoutedEventArgs e)
         {
@@ -153,7 +158,7 @@ namespace laba4
         }
 
         /// <summary>
-        /// Вызов окна с попомщью
+        ///     Вызов окна с попомщью
         /// </summary>
         private void ShowHelp(object sender, RoutedEventArgs e)
         {
