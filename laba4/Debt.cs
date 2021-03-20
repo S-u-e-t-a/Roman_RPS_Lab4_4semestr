@@ -18,8 +18,9 @@ namespace laba4
         private string name;
         private string phone;
 
-        private Regex regexDate = new Regex(@"(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[012])\.(19|20)\d\d"); //дата в формате DD.MM.YYYY
+        private Regex regexDate = new Regex(@"(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[012])\.(19|20)\d\d$"); //дата в формате DD.MM.YYYY
         private Regex regexPhone = new Regex(@"^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$");
+        private Regex regexEmty = new Regex(@"^\s*$");
         /*Номера по типу
                +79261234567
                89261234567
@@ -45,6 +46,36 @@ namespace laba4
                 string error = String.Empty;
                 switch (columnName)
                 {
+                    case "Addres":
+                        if (Addres == null)
+                        {
+                            error = "Значение не может быть пустым";
+                        }
+                        else if (regexEmty.IsMatch(Addres))
+                        {
+                            error = "Значение не состоять только из знаков-разделителей";
+                        }
+                        break;
+                    case "Bank":
+                        if (Bank == null)
+                        {
+                            error = "Значение не может быть пустым";
+                        }
+                        else if (regexEmty.IsMatch(Bank))
+                        {
+                            error = "Значение не состоять только из знаков-разделителей";
+                        }
+                        break;
+                    case "Name":
+                        if (Name == null)
+                        {
+                            error = "Значение не может быть пустым";
+                        }
+                        else if (regexEmty.IsMatch(Name))
+                        {
+                            error = "Значение не состоять только из знаков-разделителей";
+                        }
+                        break;
                     case "Phone":
                         if (Phone != null)
                         {
@@ -52,6 +83,14 @@ namespace laba4
                             {
                                 error = "Неверный формат ввода номера";
                             }
+                        }
+                        else if (Phone == null)
+                        {
+                            error = "Значение не может быть пустым";
+                        }
+                        else if (regexEmty.IsMatch(Name))
+                        {
+                            error = "Значение не состоять только из знаков-разделителей";
                         }
 
                         break;
@@ -63,7 +102,21 @@ namespace laba4
                                 error = "Неверный формат ввода даты";
                             }
                         }
+                        else if (DateDebt == null)
+                        {
+                            error = "Значение не может быть пустым";
+                        }
+                        else if (regexEmty.IsMatch(DateDebt))
+                        {
+                            error = "Значение не состоять только из знаков-разделителей";
+                        }
 
+                        break;
+                    case "InitialDebt":
+                        if (InitialDebt <= 0)
+                        {
+                            error = "Начальная сумма долга должна быть больше 0";
+                        }
                         break;
                 }
                 return error;

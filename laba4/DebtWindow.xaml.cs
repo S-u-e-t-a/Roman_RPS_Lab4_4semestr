@@ -31,15 +31,32 @@ namespace laba4
 
         private void validationError(object sender, ValidationErrorEventArgs e)
         {
-            if (e.Action == ValidationErrorEventAction.Added)
+            if (GetErrors(sender as Grid))
             {
                 AcceptButton.IsEnabled = false;
             }
-
-            if (e.Action == ValidationErrorEventAction.Removed)
+            else
             {
                 AcceptButton.IsEnabled = true;
             }
         }
+
+
+        private bool GetErrors(DependencyObject obj)
+        {
+            foreach (object child in LogicalTreeHelper.GetChildren(obj))
+            {
+                TextBox element = child as TextBox;
+                if (element == null) continue;
+
+                if (Validation.GetHasError(element))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
     }
 }
