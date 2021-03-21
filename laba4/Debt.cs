@@ -20,7 +20,6 @@ namespace laba4
 
         private Regex regexDate = new Regex(@"(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[012])\.(19|20)\d\d$"); //дата в формате DD.MM.YYYY
         private Regex regexPhone = new Regex(@"^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$");
-        private Regex regexEmty = new Regex(@"^\s*$");
         /*Номера по типу
                +79261234567
                89261234567
@@ -39,6 +38,13 @@ namespace laba4
                8 927 12 555 12
                8 927 123 8 123
              */
+        private Regex regexEmty = new Regex(@"^\s*$"); //текст состоящий только из символов-разделителей
+
+        /// <summary>
+        /// Валидация данных
+        /// </summary>
+        /// <param name="columnName">Имя параметра</param>
+        /// <returns>Описание ошибки</returns>
         public string this[string columnName]
         {
             get
@@ -122,8 +128,7 @@ namespace laba4
                 return error;
             }
         }
-    
-
+        
         public int Id { get; set; }
 
         public decimal InitialDebt
@@ -199,23 +204,7 @@ namespace laba4
         public string Error => throw new System.NotImplementedException();
 
         public event PropertyChangedEventHandler PropertyChanged;
-
-        /// <summary>
-        /// Проверка корректности данных
-        /// </summary>
-        /// <returns>Результат проверки</returns>
-        public bool ChekValues()
-        {
-            if ((name != null) & (addres != null) & (dateDebt != null) & (bank != null) & (phone != null))
-            {
-                if (initialDebt > 0)
-                    return true;
-                return false;
-            }
-
-            return false;
-        }
-
+        
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
             if (PropertyChanged != null)

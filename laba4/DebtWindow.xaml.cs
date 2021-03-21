@@ -22,14 +22,18 @@ namespace laba4
 
         public Debt Debt { get; }
 
+        /// <summary>
+        /// Действие при нажатии на конпку 
+        /// </summary>
         private void Accept_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = true;
         }
 
-
-
-        private void validationError(object sender, ValidationErrorEventArgs e)
+        /// <summary>
+        /// Обработка ошибок валидации
+        /// </summary>
+        private void ValidationError(object sender, ValidationErrorEventArgs e)
         {
             if (GetErrors(sender as Grid))
             {
@@ -41,7 +45,11 @@ namespace laba4
             }
         }
 
-
+        /// <summary>
+        /// Проверка на наличие ошибок валидации
+        /// </summary>
+        /// <param name="obj">Родитель объектов, валидацию которых надо проверить</param>
+        /// <returns>Результат проверки</returns>
         private bool GetErrors(DependencyObject obj)
         {
             foreach (object child in LogicalTreeHelper.GetChildren(obj))

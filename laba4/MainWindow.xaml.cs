@@ -31,16 +31,8 @@ namespace laba4
             if (debtWindow.ShowDialog() == true)
             {
                 var debt = debtWindow.Debt;
-                if (debt.ChekValues())
-                {
-                    db.Debts.Add(debt);
-                    db.SaveChanges();
-                }
-                else
-                {
-                    MessageBox.Show("Данные введены некорректно, операция не выполнена.", "Ошибка!",
-                        MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+                db.Debts.Add(debt);
+                db.SaveChanges();
             }
         }
 
@@ -80,16 +72,8 @@ namespace laba4
                     debt.CurrentDebt = debtWindow.Debt.CurrentDebt;
                     debt.Bank = debtWindow.Debt.Bank;
 
-                    if (debt.ChekValues())
-                    {
-                        db.Entry(debt).State = EntityState.Modified;
-                        db.SaveChanges();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Данные введены некорректно, операция не выполнена.", "Ошибка!",
-                            MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
+                    db.Entry(debt).State = EntityState.Modified;
+                    db.SaveChanges();
                 }
             }
         }
