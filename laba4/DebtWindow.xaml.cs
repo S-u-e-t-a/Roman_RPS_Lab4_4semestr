@@ -54,7 +54,7 @@ namespace laba4
         {
             foreach (object child in LogicalTreeHelper.GetChildren(obj))
             {
-                TextBox element = child as TextBox;
+                Control element = child as Control;
                 if (element == null) continue;
 
                 if (Validation.GetHasError(element))

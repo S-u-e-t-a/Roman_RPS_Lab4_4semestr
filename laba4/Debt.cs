@@ -101,23 +101,16 @@ namespace laba4
 
                         break;
                     case "DateDebt":
-                        if (DateDebt != null)
-                        {
-                            if (!regexDate.IsMatch(DateDebt))
-                            {
-                                error = "Неверный формат ввода даты";
-                            }
-                        }
-                        else if (DateDebt == null)
-                        {
-                            error = "Значение не может быть пустым";
-                        }
-                        else if (regexEmty.IsMatch(DateDebt))
-                        {
-                            error = "Значение не состоять только из знаков-разделителей";
-                        }
+                         if (DateDebt == null)
+                         {
+                             error = "Значение не может быть пустым";
+                         }
+                         else if (regexEmty.IsMatch(DateDebt))
+                         {
+                             error = "Значение не состоять только из знаков-разделителей";
+                         }
 
-                        break;
+                         break;
                     case "InitialDebt":
                         if (InitialDebt <= 0)
                         {

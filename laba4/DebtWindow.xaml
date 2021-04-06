@@ -118,9 +118,9 @@
                 </Style>
             </TextBox.Style>
         </TextBox>
-        <TextBox Grid.Row="3" Grid.Column="1" Margin="8,8,8,8">
-            <TextBox.Text>
-                <Binding
+        <DatePicker Grid.Column="1"  Grid.Row="3"  Margin="8,8,8,8">
+            <DatePicker.SelectedDate>
+				<Binding
                     NotifyOnValidationError="True"
                     Path="DateDebt"
                     UpdateSourceTrigger="PropertyChanged">
@@ -129,9 +129,9 @@
                         <DataErrorValidationRule />
                     </Binding.ValidationRules>
                 </Binding>
-            </TextBox.Text>
-            <TextBox.Style>
-                <Style TargetType="{x:Type TextBox}">
+            </DatePicker.SelectedDate>
+            <DatePicker.Style>
+                <Style TargetType="{x:Type DatePicker}">
                     <Style.Triggers>
                         <Trigger Property="Validation.HasError" Value="True">
                             <Setter Property="ToolTip"
@@ -139,8 +139,8 @@
                         </Trigger>
                     </Style.Triggers>
                 </Style>
-            </TextBox.Style>
-        </TextBox>
+            </DatePicker.Style>
+        </DatePicker>
         <TextBox Grid.Row="4" Grid.Column="1" Margin="8,8,8,8">
             <TextBox.Text>
                 <Binding
@@ -231,5 +231,6 @@
                 Отмена
             </Button>
         </StackPanel>
-    </Grid>
+		
+	</Grid>
 </Window>
