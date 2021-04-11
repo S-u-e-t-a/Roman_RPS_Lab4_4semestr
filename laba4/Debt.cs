@@ -18,7 +18,7 @@ namespace laba4
         private string name;
         private string phone;
 
-        private Regex regexDate = new Regex(@"(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[012])\.(19|20)\d\d$"); //дата в формате DD.MM.YYYY
+        //private Regex regexDate = new Regex(@"(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[012])\.(19|20)\d\d$"); //дата в формате DD.MM.YYYY
         private Regex regexPhone = new Regex(@"^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$");
         /*Номера по типу
                +79261234567

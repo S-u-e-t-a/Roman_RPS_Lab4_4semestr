@@ -16,7 +16,6 @@ namespace laba4
         public MainWindow()
         {
             InitializeComponent();
-
             db = new ApplicationContext();
             db.Debts.Load();
             DataContext = db.Debts.Local.ToBindingList();
@@ -30,7 +29,8 @@ namespace laba4
             var debtWindow = new DebtWindow(new Debt());
             if (debtWindow.ShowDialog() == true)
             {
-                var debt = debtWindow.Debt;
+                //var debt = {debtWindow.};
+                var debt = new Debt();
                 db.Debts.Add(debt);
                 db.SaveChanges();
             }
@@ -57,20 +57,22 @@ namespace laba4
                 CurrentDebt = debt.CurrentDebt,
                 Bank = debt.Bank
             });
-
-            if (debtWindow.ShowDialog() == true)
+            debtWindow.Show();
+            var debtWindowcontext = debtWindow.DataContext as DebtWindowViewModel;
+            if (debtWindowcontext.DialogResult)
             {
                 // получаем измененный объект
-                debt = db.Debts.Find(debtWindow.Debt.Id);
+                debt = db.Debts.Find(debtWindowcontext.Debt.Id);
                 if (debt != null)
                 {
-                    debt.Name = debtWindow.Debt.Name;
-                    debt.Addres = debtWindow.Debt.Addres;
-                    debt.Phone = debtWindow.Debt.Phone;
-                    debt.DateDebt = debtWindow.Debt.DateDebt;
-                    debt.InitialDebt = debtWindow.Debt.InitialDebt;
-                    debt.CurrentDebt = debtWindow.Debt.CurrentDebt;
-                    debt.Bank = debtWindow.Debt.Bank;
+                    
+                    debt.Name = debtWindowcontext.Debt.Name;
+                    debt.Addres = debtWindowcontext.Debt.Addres;
+                    debt.Phone = debtWindowcontext.Debt.Phone;
+                    debt.DateDebt = debtWindowcontext.Debt.DateDebt;
+                    debt.InitialDebt = debtWindowcontext.Debt.InitialDebt;
+                    debt.CurrentDebt = debtWindowcontext.Debt.CurrentDebt;
+                    debt.Bank = debtWindowcontext.Debt.Bank;
 
                     db.Entry(debt).State = EntityState.Modified;
                     db.SaveChanges();

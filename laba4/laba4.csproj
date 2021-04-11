@@ -51,12 +51,6 @@
       <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
-    <Reference Include="ReactiveUI, Version=13.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ReactiveUI.13.2.2\lib\net461\ReactiveUI.dll</HintPath>
-    </Reference>
-    <Reference Include="ReactiveUI.Wpf, Version=13.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ReactiveUI.WPF.13.2.2\lib\net461\ReactiveUI.Wpf.dll</HintPath>
-    </Reference>
     <Reference Include="Splat, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Splat.10.0.1\lib\net461\Splat.dll</HintPath>
     </Reference>
@@ -87,6 +81,9 @@
     </Reference>
     <Reference Include="System.Windows" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -105,6 +102,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="RelayCommand.cs" />
     <Page Include="DebtWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -126,6 +124,7 @@
     <Compile Include="DebtWindow.xaml.cs">
       <DependentUpon>DebtWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DebtWindowViewModel.cs" />
     <Compile Include="HelpForm.xaml.cs">
       <DependentUpon>HelpForm.xaml</DependentUpon>
     </Compile>
