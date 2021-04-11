@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:laba4"
         mc:Ignorable="d"
-        Title="Лабораторная работа №4" Height="450" Width="800"
+        Title="Лабораторная работа №4" Height="700" Width="800"
         MinHeight="450"
         MinWidth="800">
 
@@ -19,13 +19,13 @@
             Grid.Row="0"
             VerticalAlignment="Top">
             <MenuItem Header="Файл">
-                <MenuItem Click="ExportToExcel" Header="Экспорт в Excel" />
+                <MenuItem Command="{Binding ExportToExcelCommand}" Header="Экспорт в Excel" />
                 <Separator />
-                <MenuItem Click="Exit" Header="Выход" />
+                <MenuItem Command="{Binding ExitCommand}" Header="Выход" />
             </MenuItem>
-            <MenuItem Header="Справка" Click="ShowHelp" />
+            <MenuItem Header="Справка" Command="{Binding ShowHelpCommand}" />
         </Menu>
-        <ListBox x:Name="debtsList" ItemsSource="{Binding}" Grid.Row="1">
+        <ListBox x:Name="debtsList" ItemsSource="{Binding Debts}" Grid.Row="1">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid>
@@ -71,9 +71,11 @@
             </ListBox.ItemContainerStyle>
         </ListBox>
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Content="Добавить" Margin="10" Click="Add_Click" />
-            <Button Content="Изменить" Margin="10" Click="Edit_Click" />
-            <Button Content="Удалить" Margin="10" Click="Delete_Click" />
+            <Button Content="Добавить" Margin="10" Command="{Binding AddCommand}" />
+            <Button Content="Изменить" Margin="10" Command="{Binding EditCommand}"
+                    CommandParameter="{Binding ElementName=debtsList, Path=SelectedItem}" />
+            <Button Content="Удалить"  Margin="10" Command="{Binding DeleteCommand}"
+                    CommandParameter="{Binding ElementName=debtsList, Path=SelectedItem}"/>
         </StackPanel>
     </Grid>
 </Window>

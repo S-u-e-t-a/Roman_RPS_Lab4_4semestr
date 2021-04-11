@@ -117,6 +117,12 @@ namespace laba4
                             error = "Начальная сумма долга должна быть больше 0";
                         }
                         break;
+                    case "CurrentDebt":
+                        if (InitialDebt <= 0)
+                        {
+                            error = "Текущая сумма долга должна быть больше 0";
+                        }
+                        break;
                 }
                 return error;
             }
