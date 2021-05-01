@@ -2,6 +2,9 @@
 
 namespace laba4
 {
+    /// <summary>
+    /// Класс описывающий базу данных
+    /// </summary>
     public class ApplicationContext : DbContext
     {
         public ApplicationContext() : base("DefaultConnection")

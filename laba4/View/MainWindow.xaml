@@ -19,7 +19,7 @@
             Grid.Row="0"
             VerticalAlignment="Top">
             <MenuItem Header="Файл">
-                <MenuItem Command="{Binding ExportToExcelCommand}" Header="Экспорт в Excel" />
+                <MenuItem Command="{Binding ExportToExcelCommmand}" Header="Экспорт в Excel" />
                 <Separator />
                 <MenuItem Command="{Binding ExitCommand}" Header="Выход" />
             </MenuItem>

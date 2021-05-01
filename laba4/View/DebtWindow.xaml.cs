@@ -1,12 +1,7 @@
-﻿using System;
-using System.Diagnostics;
-using System.Text.RegularExpressions;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
-using System.Windows.Media;
 
-namespace laba4
+namespace laba4.View
 {
     /// <summary>
     /// Окно для изменения/добавления сущностей 

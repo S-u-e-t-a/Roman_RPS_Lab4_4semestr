@@ -2,10 +2,12 @@
 using System.ComponentModel;
 using System.Data.Entity;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using Application = Microsoft.Office.Interop.Excel.Application;
 using Window = System.Windows.Window;
 using Microsoft.Office.Interop.Excel;
 using laba4;
+using laba4.View;
 
 namespace laba4
 {
@@ -33,7 +35,7 @@ namespace laba4
         public ApplicationViewModel()
         {
             db = new ApplicationContext();
-            db.Debts.Load();
+            db.Debts.LoadAsync();
             Debts = db.Debts.Local.ToBindingList();
         }
         // команда добавления
@@ -49,7 +51,7 @@ namespace laba4
                       {
                           Debt debt = debtWindow.Debt;
                           db.Debts.Add(debt);
-                          db.SaveChanges();
+                          db.SaveChangesAsync();
                       }
                   }));
             }
@@ -95,7 +97,8 @@ namespace laba4
                               debt.Bank = debtWindow.Debt.Bank;
 
                               db.Entry(debt).State = EntityState.Modified;
-                              db.SaveChanges();
+                              
+                              db.SaveChangesAsync();
                           }
                       }
                   }));
@@ -110,15 +113,21 @@ namespace laba4
                   (deleteCommand = new RelayCommand((selectedItem) =>
                   {
                       if (selectedItem == null) return;
-                      // получаем выделенный объект
-                      Debt debt = selectedItem as Debt;
-                      db.Debts.Remove(debt);
-                      db.SaveChanges();
+                      MessageBoxResult result = MessageBox.Show("Вы действительно хотите удалить запись?", "",
+                          MessageBoxButton.OKCancel, MessageBoxImage.Question);
+                      if (result == MessageBoxResult.OK)
+                      {
+                          Debt debt = selectedItem as Debt;
+                          db.Debts.Remove(debt);
+                          db.SaveChangesAsync();
+                      }
                   }));
             }
         }
 
-
+        /// <summary>
+        /// Команда выхода
+        /// </summary>
         public RelayCommand ExitCommand
         {
             get
@@ -130,7 +139,9 @@ namespace laba4
                        }));
             }
         }
-
+        /// <summary>
+        /// Команда показа помощи
+        /// </summary>
         public RelayCommand ShowHelpCommand
         {
             get
@@ -143,7 +154,9 @@ namespace laba4
                        }));
             }
         }
-
+        /// <summary>
+        /// Команда экспорта в эксель
+        /// </summary>
         public RelayCommand ExportToExcelCommmand
         {
             get
@@ -184,8 +197,6 @@ namespace laba4
                        }));
             }
         }
-
-
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
